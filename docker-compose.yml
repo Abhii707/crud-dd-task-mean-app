@@ -1,0 +1,21 @@
+services:
+  backend:
+    image: abhi197/mean-backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/tutorials
+
+  frontend:
+    image: abhi197/mean-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
